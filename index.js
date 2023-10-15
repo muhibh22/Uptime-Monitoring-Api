@@ -1,6 +1,7 @@
 //dependencies
 
 const http=require('http');
+const url=require('url');
 
 
 //appobject - module scaffolding
@@ -21,7 +22,14 @@ app.createServer=()=>{
 
 //handle Request Response
 app.handleReqRes=(req, res)=>{
-res.end('Hello Programmers');
+
+    //request handle
+    const parsedUrl=url.parse(req.url, true);
+    const path=parsedUrl.pathname;
+
+
+    //response handling    
+    res.end('Hello Programmers');
 };
 
 //start the server
