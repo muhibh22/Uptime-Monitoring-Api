@@ -1,8 +1,7 @@
 //dependencies
 
 const http=require('http');
-const url=require('url');
-
+const handler=require('./helpers/handlereqres');
 
 //appobject - module scaffolding
 
@@ -14,23 +13,13 @@ app.config={
 };
 
 app.createServer=()=>{
-    const server=http.createServer(app.handleReqRes);
+    const server=http.createServer(handler.handleReqRes);
     server.listen(app.config.port, ()=>{
         console.log(`listening to port ${app.config.port}`);
     } );
 };
 
-//handle Request Response
-app.handleReqRes=(req, res)=>{
 
-    //request handle
-    const parsedUrl=url.parse(req.url, true);
-    const path=parsedUrl.pathname;
-
-
-    //response handling    
-    res.end('Hello Programmers');
-};
 
 //start the server
 app.createServer();
